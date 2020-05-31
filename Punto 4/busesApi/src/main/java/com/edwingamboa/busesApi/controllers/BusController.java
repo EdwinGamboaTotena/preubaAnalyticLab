@@ -73,7 +73,7 @@ public class BusController {
 		Map<String, Object> response = new HashMap<>();
 		try {
 			response.put("mensaje", (bus.getId() != 0) ? EDITADO : CREADO);
-			busService.save(bus);
+			bus = busService.save(bus);
 			response.put("exito", true);
 			response.put("bus", bus);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
@@ -94,12 +94,12 @@ public class BusController {
 				busService.deletOne(id);
 				response.put("exito", true);
 				response.put("mensaje", ELIMINADO);
-				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 			} else {
 				response.put("exito", false);
 				response.put("mensaje", NO_ENCONTRADO);
-				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NO_CONTENT);
 			}
+			return new ResponseEntity<Map<String, Object>>(response,
+					(bus != null) ? HttpStatus.OK : HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			response.put("exito", false);
 			response.put("error", e.getMessage());

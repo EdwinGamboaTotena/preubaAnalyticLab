@@ -7,10 +7,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class BusesApiApplicationTests {
+public class BusesApiApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void main() {
+		BusesApiApplication.main(new String[] {});
 	}
 
 }
